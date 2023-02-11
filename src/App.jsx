@@ -6,10 +6,12 @@ import { BrowserRouter } from "react-router-dom";
 import ErrorPage from "./NotFound";
 import Nosotros from "./Routes/Nosotros";
 import ItemDetailContainer from "./Routes/ItemDetailContainer";
-import Cart from "./Routes/Cart";
-import FormAlta from "./components/formularioAlta/FormAlta";
+import LoginUser from "./Routes/LoginUser";
+import RegisterUser from "./Routes/RegisterUser";
+import ItemListShopping from "./Routes/ItemListShopping";
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
@@ -19,8 +21,9 @@ function App() {
           <Route path="/category/:id" element={<ItemListContainer />} />
           <Route path="/item/:id" element={<ItemDetailContainer />} />
           <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/form" element={<FormAlta />} />
+          <Route path="/register" element={<RegisterUser />} />
+          <Route path="/loginIn" element={<LoginUser  />} />
+          <Route path="/itemShopp" element={<ItemListShopping  />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

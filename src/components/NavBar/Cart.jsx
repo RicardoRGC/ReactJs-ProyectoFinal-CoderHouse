@@ -8,16 +8,21 @@ import {
   DrawerCloseButton,
   Button,
   Box,
+  Text,
 } from "@chakra-ui/react";
 
-import CardCart from "../CardCart";
 import { CartContext } from "../../context/CartContext";
-import { useContext } from "react";
-import ItemCard2 from "../ItemCard2";
+import { useContext, useEffect } from "react";
+import ItemCard2 from "./ItemCard2";
+import AlertCompra from "./AlertCompra";
 
-function CartShop({ isOpen, onClose, btnRef }) {
-  const { elemento, clearItems } = useContext(CartContext);
-
+function Cart({ isOpen, onClose, btnRef }) {
+  const { elemento, clearItems, fireBaseCartShop, getFireBaseCartShop } =
+    useContext(CartContext);
+  useEffect(() => {
+    getFireBaseCartShop();
+    // console.log(fireBaseCartShop);
+  }, []);
   return (
     <>
       <Drawer
@@ -45,15 +50,25 @@ function CartShop({ isOpen, onClose, btnRef }) {
             alignContent="center"
             alignItems="center"
           >
+            <Box padding={2} border="solid" display="flex">
+              <Text> Precio Total: </Text>
+
+              <Text>
+                {elemento.reduce((acc, item) => {
+                  return (acc += parseFloat(item.price * item.cantidad));
+                }, 0)}
+                $
+              </Text>
+            </Box>
+
             <Box>
-              <Button size='sm'  m={3} onClick={clearItems}>
+              <Button size="sm" m={3} onClick={clearItems}>
                 Limpiar Carrito
               </Button>
-              <Button  size='sm' colorScheme="blue" m={3}>
-                Comprar
-              </Button>
+
+              <AlertCompra></AlertCompra>
             </Box>
-            <Button  size='sm' variant="outline" m={3} onClick={onClose}>
+            <Button size="sm" variant="outline" m={3} onClick={onClose}>
               Cancel
             </Button>
           </DrawerFooter>
@@ -63,4 +78,4 @@ function CartShop({ isOpen, onClose, btnRef }) {
   );
 }
 
-export default CartShop;
+export default Cart;

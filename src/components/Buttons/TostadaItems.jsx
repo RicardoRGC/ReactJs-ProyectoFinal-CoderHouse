@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import ButtonTostada from "./Buttons/ButtonTostada";
-import { DatosContext } from "../context/DatosContextarc";
+import ButtonTostada from "./ButtonTostada";
+import { DatosContext } from "../../context/DatosContextarc";
 
 const categorias = [];
 function TostadaItems() {

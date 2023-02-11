@@ -9,10 +9,13 @@ import {
   Heading,
   Text,
   Button,
+  Box,
+  Link,
 } from "@chakra-ui/react";
-import ItemCount from "./ItemCount";
-import Button1 from "./Buttons/Button1";
-import { CartContext } from "../context/CartContext";
+import { DeleteIcon } from "@chakra-ui/icons";
+import ItemCount from "../ItemCount";
+import Button1 from "../Buttons/Button1";
+import { CartContext } from "../../context/CartContext";
 const ItemCard2 = ({ producto }) => {
   const { removeItem } = useContext(CartContext);
   const styleButoon = {
@@ -32,7 +35,7 @@ const ItemCard2 = ({ producto }) => {
         marginTop="10px"
         borderRadius="md"
         objectFit="cover"
-        maxW={{ base: "100%", sm: "150px" }}
+        maxW={{ base: "100%", sm: "50px" }}
         src={producto.image}
         alt="Caffe Latte"
       />
@@ -44,21 +47,28 @@ const ItemCard2 = ({ producto }) => {
           <Text py="2" fontSize="xs">
             Cantidad: {producto.cantidad}
           </Text>
+          <Text py="2" fontSize="xs">
+            Precio: {producto.price}
+          </Text>
         </CardBody>
-
-        <CardFooter paddingTop="0" justifyContent="center" flexWrap="wrap">
-          <ItemCount
-            styleButoon={styleButoon}
-            textButoon="Modificar"
-            producto={producto}
-          ></ItemCount>
-          <Button1
-            styleButoon={styleButoon}
-            texto="eliminar"
-            handleClick={() => removeItem(producto)}
-          ></Button1>
-        </CardFooter>
       </Stack>
+      <CardFooter
+        paddingTop="0"
+        paddingBottom={0}
+        justifyContent="center"
+        flexWrap="wrap"
+      >
+        <ItemCount
+          styleButoon={styleButoon}
+          textButoon="Modificar"
+          producto={producto}
+        ></ItemCount>
+      </CardFooter>
+      <Box display={"flex"} justifyContent="flex-end" w="100%">
+        <Link>
+          <DeleteIcon m={5} w={5} h={5} onClick={() => removeItem(producto)} />
+        </Link>
+      </Box>
     </Card>
   );
 };

@@ -1,0 +1,12 @@
+.butoon{
+    width: 230px;
+    display: flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}
