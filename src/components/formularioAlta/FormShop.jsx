@@ -20,14 +20,15 @@ import { Timestamp } from "firebase/firestore";
 const FormShop = ({ onClose }) => {
   const [mensaje, setMensaje] = useState("");
   const { elemento, clearItems } = useContext(CartContext);
-  const { setVentas, getFireBaseShopping, idUser ,setSpinnerCart} = useFireBase();
+  const { setVentas, getFireBaseShopping, idUser, setSpinnerCart } =
+    useFireBase();
   const user = {
     nombre: "",
     tel: "",
   };
 
   const handleVenta = async (user1) => {
-    setSpinnerCart(false)
+    setSpinnerCart(false);
     let precioTotal = elemento.reduce((acc, el) => {
       return (acc += parseFloat(el.price));
     }, 0);
@@ -44,7 +45,7 @@ const FormShop = ({ onClose }) => {
       IdCompra: idUser,
     };
 
-    console.log(venta);
+    // console.log(venta);
     const res = await setVentas(venta);
     setMensaje(`Compra realizada con exito Numero de pedido:${res}`);
 
@@ -55,9 +56,12 @@ const FormShop = ({ onClose }) => {
   const [inputchange, setInputchange] = useState(user);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputchange);
-
-    handleVenta(inputchange);
+    // console.log(inputchange);
+    if (inputchange.nombre === "" || inputchange.tel === "") {
+      setMensaje("Debe completar todos los campos");
+    } else {
+      handleVenta(inputchange);
+    }
     setInputchange(user);
   };
 

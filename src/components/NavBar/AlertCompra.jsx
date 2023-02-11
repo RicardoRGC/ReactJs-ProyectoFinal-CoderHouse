@@ -10,7 +10,7 @@ import {
   useDisclosure,
   AlertDialogCloseButton,
 } from "@chakra-ui/react";
-import FormShop from "./FormShop";
+import FormShop from "../formularioAlta/FormShop";
 const AlertCompra = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
