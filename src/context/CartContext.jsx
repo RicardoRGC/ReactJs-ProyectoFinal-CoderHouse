@@ -15,15 +15,15 @@ export function CartContextProvider(props) {
   const [elemento, setElemento] = useState([]);
   //------------------removeItem------------------
   const removeItem = (params) => {
-    console.log(
-      elemento.find((item) => item.idCompra == params.idCompra).idCompra
-    );
+    // console.log(
+    //   elemento.find((item) => item.idCompra == params.idCompra).idCompra
+    // );
     deleteCartShop(
       elemento.find((item) => item.idCompra == params.idCompra).idCompra
     );
-    console.log(elemento);
+    // console.log(elemento);
     setElemento(elemento.filter((item) => item.id != params.id));
-    console.log(elemento.length);
+    // console.log(elemento.length);
   };
   //------------------addItem------------------
   function addItem(params, count) {

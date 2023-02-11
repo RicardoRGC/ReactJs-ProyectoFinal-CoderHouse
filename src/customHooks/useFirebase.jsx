@@ -113,7 +113,7 @@ function useFireBase() {
 
       const docRef = await addDoc(collection(db, "CardShop"), product);
 
-      console.log("Document written with ID: ", docRef.id);
+      // console.log("Document written with ID: ", docRef.id);
 
      getFireBaseCartShop().then((res) => {
         if (res) {
@@ -127,7 +127,6 @@ function useFireBase() {
   //------------------------------------------
   const deleteCartShop = async (idCompra) => {
     const res = await deleteDoc(doc(db, "CardShop", idCompra));
-    console.log(res);
   };
   //------------------------------------------
   const clearItemsCartShop = async () => {

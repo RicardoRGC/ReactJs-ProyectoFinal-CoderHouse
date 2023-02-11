@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
+import estilos from "./formUsuario.module.css";
 import { useNavigate } from "react-router-dom";
 import {
-  FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Button,
   Input,
   InputRightElement,
   InputGroup,
 } from "@chakra-ui/react";
-
+import { Box,Text } from '@chakra-ui/react'
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../../db/firebase-confing";
 import useFireBase from "../../customHooks/useFirebase";
-import  Loading  from "react-fullscreen-loading";
+import Loading from "react-fullscreen-loading";
 const FormUsuario = ({ data }) => {
-  const { setSpinnerCart ,spinnerCart} = useFireBase();
+  const { setSpinnerCart, spinnerCart } = useFireBase();
   const inicialChange = {
     mail: "",
     contrasenia: "",
@@ -78,7 +76,6 @@ const FormUsuario = ({ data }) => {
   };
   //------------------------------------
   const handleSubmit = (e) => {
-    
     e.preventDefault();
     setSpinnerCart(false);
     // console.log(inputchange);
@@ -92,46 +89,53 @@ const FormUsuario = ({ data }) => {
     // console.log(name, value);
     setInputchange({ ...inputchange, [e.target.name]: e.target.value });
   };
-  const [stateSpinnerNav, setStateSpinnerNav] = useState(false)
+  const [stateSpinnerNav, setStateSpinnerNav] = useState(false);
   useEffect(() => {
- 
-    setStateSpinnerNav(spinnerCart)
-  console.log(stateSpinnerNav);
-  }, [spinnerCart])
+    setStateSpinnerNav(spinnerCart);
+    console.log(stateSpinnerNav);
+  }, [spinnerCart]);
 
   return (
     <>
-    {!stateSpinnerNav ?  <Loading spin text="xin chờ" loading={true} loaderColor="#3498db" /> : ""}
-    <form onSubmit={handleSubmit}>
-      <h1>{data}</h1>
-      <FormLabel>mail</FormLabel>
-      <Input
-        onChange={handleChange}
-        name="mail"
-        placeholder="mail"
-        value={inputchange.mail}
-        />
-      <InputGroup size="md">
-        <Input
-          pr="4.5rem"
-          type={show ? "text" : "password"}
-          placeholder="Enter password"
-          name="contrasenia"
-          onChange={handleChange}
-          value={inputchange.contrasenia}
+      {!stateSpinnerNav ? (
+        <Loading spin text="xin chờ" loading={true} loaderColor="#3498db" />
+      ) : (
+        ""
+      )}
+      <Box display="flex" justifyContent={'Center'}>
+        <form className={estilos.form} onSubmit={handleSubmit}>
+          <Text fontSize='5xl' as='b'>{data}</Text>
+          <FormLabel></FormLabel>
+          <Input
+            m="10px"
+            onChange={handleChange}
+            name="mail"
+            placeholder="mail"
+            value={inputchange.mail}
           />
-        <InputRightElement width="4.5rem">
-          <Button h="1.75rem" size="sm" onClick={handleClick}>
-            {show ? "Hide" : "Show"}
-          </Button>
-        </InputRightElement>
-      </InputGroup>
+          <InputGroup size="md">
+            <Input
+            
+              pr="4.5rem"
+              type={show ? "text" : "password"}
+              placeholder="Enter password"
+              name="contrasenia"
+              onChange={handleChange}
+              value={inputchange.contrasenia}
+            />
+            <InputRightElement width="4.5rem">
+              <Button h="1.75rem" size="sm" onClick={handleClick}>
+                {show ? "Hide" : "Show"}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
 
-      <Button type="submit" mt={4} colorScheme="teal">
-        {data}
-      </Button>
-    </form>
-          </>
+          <Button type="submit" mt={4} colorScheme="teal">
+            {data}
+          </Button>
+        </form>
+      </Box>
+    </>
   );
 };
 
