@@ -9,26 +9,26 @@ import estilos from "./navBar.module.css";
 import Spinner1 from "../components/Spinner";
 import Loading from "react-fullscreen-loading";
 function NavBar() {
-  const { elemento,spinnerCart } = useContext(CartContext);
+  const { elemento, spinnerCart } = useContext(CartContext);
   const { stateUserLogin, singOut } = useFireBase();
   const { isOpen, onOpen, onClose } = useDisclosure();
- const [stateSpinnerNav, setStateSpinnerNav] = useState(false)
+  const [stateSpinnerNav, setStateSpinnerNav] = useState(false);
   const btnRef = React.useRef();
-useEffect(() => {
- 
-  setStateSpinnerNav(spinnerCart)
-// console.log(stateSpinnerNav);
-}, [spinnerCart])
+  useEffect(() => {
+    setStateSpinnerNav(spinnerCart);
+    // console.log(stateSpinnerNav);
+  }, [spinnerCart]);
 
   return (
     <>
-
-{!stateSpinnerNav ?  <Loading spin text="xin chờ" loading={true} loaderColor="#3498db" /> : null}
+      {!stateSpinnerNav ? (
+        <Loading spin text="xin chờ" loading={true} loaderColor="#3498db" />
+      ) : null}
       <div className={estilos.nav}>
         <div className={estilos.logo}>
           <Link to="/">NH BLANQUERIA</Link>
         </div>
-        <nav className={estilos.NavLink}>
+        <nav className={estilos.navlink}>
           <NavLink to="/nosotros" className={estilos.links}>
             Nosotros
           </NavLink>
@@ -75,7 +75,6 @@ useEffect(() => {
             </nav>
           )}
           <div className={estilos.icon}>
-
             {elemento.length != 0 && (
               <CartWidget btnRef={btnRef} onOpen={onOpen}></CartWidget>
             )}
