@@ -29,16 +29,16 @@ function NavBar() {
           <Link to="/">NH BLANQUERIA</Link>
         </div>
         <nav className={estilos.navlink}>
-          <NavLink to="/nosotros" className={estilos.links}>
+          {/* <NavLink to="/nosotros" className={estilos.links}>
             Nosotros
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/" className={estilos.links}>
             Productos
           </NavLink>
 
-          <NavLink to="caracteristicas/" className={estilos.links}>
+          {/* <NavLink to="caracteristicas/" className={estilos.links}>
             Caracteristicas
-          </NavLink>
+          </NavLink> */}
         </nav>
         <nav className={estilos.navDerecha}>
           {stateUserLogin ? (

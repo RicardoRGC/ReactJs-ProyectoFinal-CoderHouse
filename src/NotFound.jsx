@@ -7,7 +7,7 @@ export default function ErrorPage() {
   return (
     <div style={{paddingTop:'80px'}}>
       <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
+      <p>Esto esta en desarrollo.</p>
       <p>
         {/* <i>{error.statusText || error.message}</i> */}
       </p>

@@ -52,10 +52,12 @@ const FormUsuario = ({ data }) => {
         console.log("no es un mail");
 
         alert("error al registrar el usuario");
+        setSpinnerCart(true);
       }
     } catch (error) {
       console.error(error);
       alert("error al registrar el usuario");
+      setSpinnerCart(true);
     }
   };
 
